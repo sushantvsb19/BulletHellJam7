@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b86wdwardf6vc"]
+
+[ext_resource type="PackedScene" uid="uid://5ce04rcl35cg" path="res://Objects/Shooter.tscn" id="1_b5ayd"]
+[ext_resource type="PackedScene" uid="uid://b13tein3ejfkt" path="res://Objects/Player.tscn" id="2_5lt6y"]
+
+[node name="TestScene" type="Node2D" unique_id=659843686]
+
+[node name="Shooter" parent="." unique_id=1638211856 instance=ExtResource("1_b5ayd")]
+z_index = -1
+position = Vector2(328, 176.00003)
+rotation = 0.17339343
+
+[node name="Player" parent="." unique_id=1692045164 instance=ExtResource("2_5lt6y")]
+position = Vector2(114, 174)
