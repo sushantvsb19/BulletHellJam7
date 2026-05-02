@@ -15,16 +15,11 @@ bg_color = Color(0.9999706, 0.11395315, 0.2810054, 1)
 [node name="TestScene" type="Node2D" unique_id=659843686]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1807046021]
+modulate = Color(0.39, 0.39, 0.39, 1)
 z_index = -11
 offset_top = 1.0
-offset_right = 344.0
-offset_bottom = 192.0
-
-[node name="Shooter" parent="." unique_id=1638211856 instance=ExtResource("1_b5ayd")]
-z_index = -1
-position = Vector2(328, 176.00003)
-rotation = 0.17339343
-scale = Vector2(0.99999994, 0.99999994)
+offset_right = 640.0
+offset_bottom = 361.0
 
 [node name="Player" parent="." unique_id=1692045164 instance=ExtResource("2_5lt6y")]
 position = Vector2(114, 174)
@@ -47,3 +42,17 @@ offset_bottom = 23.0
 label_settings = SubResource("LabelSettings_8k7wh")
 horizontal_alignment = 1
 script = ExtResource("3_8k7wh")
+
+[node name="Shooter" parent="." unique_id=1096957462 instance=ExtResource("1_b5ayd")]
+position = Vector2(505, 104)
+type = 1
+
+[node name="Shooter2" parent="." unique_id=621727643 instance=ExtResource("1_b5ayd")]
+position = Vector2(441, 295)
+
+[node name="Shooter3" parent="." unique_id=488037460 instance=ExtResource("1_b5ayd")]
+position = Vector2(56, 43)
+
+[node name="Shooter4" parent="." unique_id=735520467 instance=ExtResource("1_b5ayd")]
+position = Vector2(264, 324)
+type = 1
