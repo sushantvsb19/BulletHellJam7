@@ -2,13 +2,48 @@
 
 [ext_resource type="PackedScene" uid="uid://5ce04rcl35cg" path="res://Objects/Shooter.tscn" id="1_b5ayd"]
 [ext_resource type="PackedScene" uid="uid://b13tein3ejfkt" path="res://Objects/Player.tscn" id="2_5lt6y"]
+[ext_resource type="Script" uid="uid://c0727b4x8w81" path="res://Scenes/Score.gd" id="3_8k7wh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5lt6y"]
+bg_color = Color(0.23753911, 0.23753914, 0.23753902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8k7wh"]
+bg_color = Color(0.9999706, 0.11395315, 0.2810054, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8k7wh"]
 
 [node name="TestScene" type="Node2D" unique_id=659843686]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1807046021]
+z_index = -11
+offset_top = 1.0
+offset_right = 344.0
+offset_bottom = 192.0
 
 [node name="Shooter" parent="." unique_id=1638211856 instance=ExtResource("1_b5ayd")]
 z_index = -1
 position = Vector2(328, 176.00003)
 rotation = 0.17339343
+scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Player" parent="." unique_id=1692045164 instance=ExtResource("2_5lt6y")]
 position = Vector2(114, 174)
+
+[node name="HealthBar" type="ProgressBar" parent="Player" unique_id=1247695414]
+offset_left = -23.0
+offset_top = -19.0
+offset_right = 22.0
+offset_bottom = -15.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5lt6y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8k7wh")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="." unique_id=1843855242]
+modulate = Color(0, 0, 0, 1)
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_8k7wh")
+horizontal_alignment = 1
+script = ExtResource("3_8k7wh")

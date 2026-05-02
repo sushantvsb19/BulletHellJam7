@@ -1,17 +1,19 @@
+class_name Player
 extends CharacterBody2D
 
-var health = 2
+@onready var health_bar = $HealthBar
+var health = 10
 var move_speed = 2
 
 var _movement_vector: Vector2 = Vector2()
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _ready():
+	health_bar.value = health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _process(delta):
+	health_bar.value = health
 
 func _physics_process(delta: float) -> void:
 	_movement_vector = Vector2()
@@ -32,5 +34,6 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(amount: int):
 	health-=amount
+	Global.Score += 5
 	if health<=0:
 		queue_free()
