@@ -12,9 +12,12 @@ bg_color = Color(0.9999706, 0.11395315, 0.2810054, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8k7wh"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8k7wh"]
+
 [node name="TestScene" type="Node2D" unique_id=659843686]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1807046021]
+visible = false
 modulate = Color(0.39, 0.39, 0.39, 1)
 z_index = -11
 offset_top = 1.0
@@ -34,6 +37,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_8k7wh")
 max_value = 10.0
 value = 10.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="." unique_id=1843855242]
 modulate = Color(0, 0, 0, 1)
@@ -44,15 +48,37 @@ horizontal_alignment = 1
 script = ExtResource("3_8k7wh")
 
 [node name="Shooter" parent="." unique_id=1096957462 instance=ExtResource("1_b5ayd")]
-position = Vector2(505, 104)
-type = 1
+position = Vector2(433, 176)
 
 [node name="Shooter2" parent="." unique_id=621727643 instance=ExtResource("1_b5ayd")]
-position = Vector2(441, 295)
+position = Vector2(610, 334)
+type = 1
 
 [node name="Shooter3" parent="." unique_id=488037460 instance=ExtResource("1_b5ayd")]
-position = Vector2(56, 43)
+position = Vector2(30, 26)
+type = 1
 
 [node name="Shooter4" parent="." unique_id=735520467 instance=ExtResource("1_b5ayd")]
-position = Vector2(264, 324)
-type = 1
+position = Vector2(221, 176)
+
+[node name="Bounds" type="StaticBody2D" parent="." unique_id=1620336388]
+position = Vector2(320, 370)
+
+[node name="UpperBound" type="CollisionShape2D" parent="Bounds" unique_id=766253392]
+position = Vector2(0, -380)
+scale = Vector2(34, 1)
+shape = SubResource("RectangleShape2D_8k7wh")
+
+[node name="LowerBound" type="CollisionShape2D" parent="Bounds" unique_id=1322185872]
+scale = Vector2(34, 1)
+shape = SubResource("RectangleShape2D_8k7wh")
+
+[node name="LeftBound" type="CollisionShape2D" parent="Bounds" unique_id=1148128929]
+position = Vector2(-330, -190)
+scale = Vector2(1, 18)
+shape = SubResource("RectangleShape2D_8k7wh")
+
+[node name="RightBound" type="CollisionShape2D" parent="Bounds" unique_id=816810132]
+position = Vector2(330, -190)
+scale = Vector2(1, 18)
+shape = SubResource("RectangleShape2D_8k7wh")

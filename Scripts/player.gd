@@ -3,10 +3,9 @@ extends CharacterBody2D
 
 @onready var health_bar = $HealthBar
 var health = 10
-var move_speed = 2
+var move_speed = 100
 
 var _movement_input: Vector2 = Vector2()
-var _movement_vector: Vector2 = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,8 +30,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("MoveRight"):
 		_movement_input.x += 1
 	
-	_movement_vector = _movement_input.normalized()*move_speed
-	position += _movement_vector
+	velocity = _movement_input.normalized()*move_speed
+	move_and_slide()
 
 func take_damage(amount: int):
 	health-=amount

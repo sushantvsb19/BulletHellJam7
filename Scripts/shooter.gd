@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 enum ShooterType { Paranoia, ADHD }
 enum AimType { Direct, Predictive, Random }
+enum MovementType { None, Random }
 
 @export var type = ShooterType.Paranoia
 
@@ -10,8 +11,14 @@ var fire_delay: float
 var aim_type: AimType
 var shot_speed: int
 var num_spread_shots: int
+var movement_type: MovementType
+var move_speed: int = 100
+var min_wait: float = 0.5
+var max_wait: float = 3
 
 var _time_since_shot = 0
+var _time_since_state = 0
+var _wait_time = 0
 var _players
 
 # Called when the node enters the scene tree for the first time.
@@ -26,17 +33,24 @@ func _ready() -> void:
 			aim_type = AimType.Direct
 			shot_speed = 50
 			num_spread_shots = 1
+			movement_type = MovementType.None
 			
 		ShooterType.ADHD:
 			fire_delay = 1
 			aim_type = AimType.Random
 			shot_speed = 150
 			num_spread_shots = 3
+			movement_type = MovementType.Random
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	_time_since_shot+=delta
+	_process_fire()
 	
+	_time_since_state+=delta
+	_process_movement()
+
+func _process_fire():
 	if _time_since_shot >= fire_delay:
 		_time_since_shot -= fire_delay
 		
@@ -62,7 +76,7 @@ func _process(delta: float) -> void:
 				shot_angle = rad_to_deg((target.position-position).angle())
 			
 			AimType.Predictive:
-				var prediction = target.position+(target._movement_vector*60*target_dist/shot_speed)
+				var prediction = target.position+(target.velocity*target_dist/shot_speed)
 				shot_angle = rad_to_deg((prediction-position).angle())
 				
 			AimType.Random:
@@ -70,6 +84,22 @@ func _process(delta: float) -> void:
 		
 		for i in range(num_spread_shots):
 			shoot(shot_angle+i*(360/num_spread_shots), shot_speed)
+
+func _process_movement():
+	var collided = move_and_slide()
+		
+	
+	if (_time_since_state < _wait_time) and not collided:
+		return
+	
+	_time_since_state = 0
+	_wait_time = randf_range(min_wait, max_wait)
+	
+	match movement_type:
+		
+		MovementType.Random:
+			var move_dir = Vector2.from_angle(deg_to_rad(randf()*360))
+			velocity = move_dir*move_speed
 
 func shoot(direction: float, speed: float):
 	var new_bullet = obj_bullet.instantiate()
