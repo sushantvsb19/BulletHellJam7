@@ -36,7 +36,6 @@ func _physics_process(delta: float) -> void:
 		get_tree().root.add_child(bullet_instance)
 		bullet_instance.global_position = self.global_position
 		bullet_instance.look_at(get_global_mouse_position())
-		
 	
 	velocity = _movement_input.normalized()*move_speed
 	move_and_slide()

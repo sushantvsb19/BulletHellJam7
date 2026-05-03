@@ -1,22 +1,16 @@
 [gd_scene format=3 uid="uid://b2fe3chix1us1"]
 
-[ext_resource type="Script" uid="uid://bvbeari3rhv73" path="res://Scripts/bullet_player.gd" id="1_lnrdm"]
+[ext_resource type="Script" uid="uid://bij3vu3gx4kdo" path="res://Objects/bullet_player.gd" id="1_lnrdm"]
 [ext_resource type="Texture2D" uid="uid://cd2qvinnqm5tm" path="res://Assets/bullet.png" id="2_16j4i"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsocj"]
-size = Vector2(8, 8)
-
-[node name="Bullet_player" type="Area2D" unique_id=2112161089]
-collision_layer = 2
+[node name="bullet_player" type="Area2D" unique_id=1646993513]
 script = ExtResource("1_lnrdm")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=473059169]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1769187394]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=970885065]
 texture = ExtResource("2_16j4i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=262104826]
-shape = SubResource("RectangleShape2D_fsocj")
-
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1998644485]
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Sprite2D" unique_id=1745379521]
 rect = Rect2(-4, -4, 8, 8)
-
-[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
+enable_node_path = NodePath("../..")
